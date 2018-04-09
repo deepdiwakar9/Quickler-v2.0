@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "414232894917",
+    "firebase_url": "https://quickler-b4f99.firebaseio.com",
+    "project_id": "quickler-b4f99",
+    "storage_bucket": "quickler-b4f99.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:414232894917:android:6258b525e7326c30",
+        "android_client_info": {
+          "package_name": "com.example.app.quickler"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "414232894917-14uo0295cahc27cdkjr6ipuq0js6l5jo.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.app.quickler",
+            "certificate_hash": "55208e40a232603828191c196f3f13f5d1d385fd"
+          }
+        },
+        {
+          "client_id": "414232894917-p0cfo3cm07v2pa9mphrq4m0fqa0jr51g.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCQhEcOjdAMMMbAUny_tf83jTYCp4FuExI"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "414232894917-p0cfo3cm07v2pa9mphrq4m0fqa0jr51g.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
