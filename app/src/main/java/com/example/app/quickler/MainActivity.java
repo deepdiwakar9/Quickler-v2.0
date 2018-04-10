@@ -1,5 +1,6 @@
 package com.example.app.quickler;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Debug;
 import android.support.v7.app.AppCompatActivity;
@@ -27,7 +28,7 @@ public class MainActivity extends AppCompatActivity {
 
     RecyclerView recyclerView;
     DatabaseReference mDatabase;
-
+    Button uploadBtn ;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,12 +37,21 @@ public class MainActivity extends AppCompatActivity {
 
         toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
+        uploadBtn = findViewById(R.id.uploadBtn);
         recyclerView = findViewById(R.id.recycler_view);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         mDatabase = FirebaseDatabase.getInstance().getReference().child("Quickler");
         mDatabase.keepSynced(true);
+
+        uploadBtn.setOnClickListener((new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), UploadActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(intent);
+            }
+        }));
     }
 
     @Override
