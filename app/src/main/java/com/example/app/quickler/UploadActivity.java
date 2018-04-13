@@ -1,8 +1,11 @@
 package com.example.app.quickler;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
+import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.OpenableColumns;
@@ -19,7 +22,10 @@ import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 
+import java.io.ByteArrayOutputStream;
 import java.io.File;
+
+import static android.media.MediaRecorder.VideoSource.CAMERA;
 
 /**
  * Created by Yash Kumar Gupta on 4/10/2018.
@@ -27,6 +33,7 @@ import java.io.File;
 
 public class UploadActivity extends AppCompatActivity {
 
+    private static final int GALLERY = 2;
     private Button mSelectBtn ;
     private Button mUploadBtn ;
     private EditText mCaption;
@@ -47,13 +54,50 @@ public class UploadActivity extends AppCompatActivity {
         mSelectBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
+                //showPictureDialog();
                 openFileSelector();
             }
         });
 
         mStorageRef = FirebaseStorage.getInstance().getReference();
     }
+/*
+    private void showPictureDialog(){
+        AlertDialog.Builder pictureDialog = new AlertDialog.Builder(this);
+        pictureDialog.setTitle("Select Action");
+        String[] pictureDialogItems = {
+                "Select photo from gallery",
+                "Capture photo from camera" };
+        pictureDialog.setItems(pictureDialogItems,
+                new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        switch (which) {
+                            case 0:
+                                choosePhotoFromGallary();
+                                break;
+                            case 1:
+                                takePhotoFromCamera();
+                                break;
+                        }
+                    }
+                });
+        pictureDialog.show();
+    }
 
+    public void choosePhotoFromGallary() {
+        Intent galleryIntent = new Intent(Intent.ACTION_PICK,
+                android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+
+        startActivityForResult(galleryIntent, GALLERY);
+    }
+    
+    private void takePhotoFromCamera() {
+        Intent intent = new Intent(android.provider.MediaStore.ACTION_IMAGE_CAPTURE);
+        startActivityForResult(intent, CAMERA);
+    }*/
+    
     private void openFileSelector(){
         Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
         intent.setType("*/*");
@@ -70,6 +114,8 @@ public class UploadActivity extends AppCompatActivity {
         }
 
     }
+
+
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -95,7 +141,7 @@ public class UploadActivity extends AppCompatActivity {
 
 
                 }finally {
-                     cursor.close();
+                    cursor.close();
 
                 }
             } else if(urlString.startsWith("file://")) {
