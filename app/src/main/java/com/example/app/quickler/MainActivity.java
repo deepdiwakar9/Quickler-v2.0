@@ -102,9 +102,12 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 
-        if(requestCode == FILE_SELECT_CODE && resultCode== RESULT_OK){
+        if(requestCode == FILE_SELECT_CODE && resultCode== RESULT_OK) {
+            Intent i = new Intent(MainActivity.this, UploadActivity.class);
+            i.putExtra("intentData", data);
+            startActivity(i);
 
-            Uri fileUri = data.getData();
+        /*    Uri fileUri = data.getData();
 
             String urlString = fileUri.toString();
 
@@ -156,11 +159,11 @@ public class MainActivity extends AppCompatActivity {
                             Toast.makeText(MainActivity.this,"There was an error in uploading. ",Toast.LENGTH_SHORT).show();
                         }
                     });
+
+
+
+        */
         }
-
-
-
-
         super.onActivityResult(requestCode, resultCode, data);
 
 
